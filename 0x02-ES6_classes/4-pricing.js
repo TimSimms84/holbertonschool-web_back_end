@@ -1,11 +1,13 @@
 /* eslint no-underscore-dangle: ["error", { "allowAfterThis": true }] */
 
+import Currency from './3-currency';
+
 export default class Pricing {
   constructor(amount, currency) {
     if (typeof (amount) === 'number') {
       this._amount = amount;
     }
-    if (typeof (currency) === 'object') {
+    if (currency instanceof Currency) {
       this._currency = currency;
     }
   }
@@ -23,7 +25,7 @@ export default class Pricing {
   }
 
   set currency(currency) {
-    if (typeof (currency) === 'object') {
+    if (currency instanceof Currency) {
       this._currency = currency;
     }
   }
