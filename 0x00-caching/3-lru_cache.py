@@ -5,6 +5,11 @@ from base_caching import BaseCaching
 
 
 class LRUCache(BaseCaching):
+    """
+    Create a class LRUCache that inherits from BaseCaching and is a
+    caching system: You must use self.cache_data - dictionary from the
+    parent class BaseCaching
+    """
     def __init__(self):
         """initialize"""
         super().__init__()
