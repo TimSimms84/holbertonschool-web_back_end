@@ -28,8 +28,6 @@ class MRUCache(BaseCaching):
             if len(self.cache_data) == BaseCaching.MAX_ITEMS and key not in\
                     self.keys:
                 del_key = self.keys.pop()
-                print("del key pop: {}".format(self.keys.pop()))
-                print("del key pop0: {}".format(self.keys.pop(0)))
                 del self.cache_data[del_key]
                 print("DISCARD: {}".format(del_key))
             if key in self.keys:
