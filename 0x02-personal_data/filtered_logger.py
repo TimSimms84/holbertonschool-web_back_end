@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import re
 import logging
+from typing import List
 """
 0x02 personal data
 """
@@ -23,7 +24,10 @@ class RedactingFormatter(logging.Formatter):
                             super().format(record), self.SEPARATOR)
 
 
-def filter_datum(fields, redaction, message, separator):
+def filter_datum(fields: List[str],
+                 redaction: str,
+                 message: str,
+                 separator: str) -> str:
     """
     Write a function called filter_datum that returns the log message
     obfuscated:
@@ -39,5 +43,5 @@ def filter_datum(fields, redaction, message, separator):
     """
     for elem in fields:
         message = re.sub(f'{elem}=.+?{separator}',
-                      f'{elem}={redaction}{separator}', message)
+                         f'{elem}={redaction}{separator}', message)
     return message
