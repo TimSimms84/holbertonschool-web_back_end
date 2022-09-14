@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-import re
-import logging
-from typing import List
 """
 0x02 personal data
 """
+import re
+import logging
+from typing import List
 
 
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
-        """
+    """
 
     REDACTION = "***"
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
