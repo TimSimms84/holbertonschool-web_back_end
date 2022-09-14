@@ -5,6 +5,8 @@
 import re
 import logging
 from typing import List
+import os
+import mysql.connector
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 """ tuple PII_FIELDS constant at the root of the module containing the
 fields from user_data.csv that are considered PII."""
@@ -68,3 +70,12 @@ def get_logger() -> logging.Logger:
     stream_handler.setFormatter(RedactingFormatter(list(PII_FIELDS)))
     logger.addHandler(stream_handler)
     return logger
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """ returns a connector to the database """
+    return mysql.connector.connect(
+                    host=os.environ.get('PERSONAL_DATA_DB_HOST', 'localhost'),
+                    database=os.environ.get('PERSONAL_DATA_DB_NAME', 'root'),
+                    user=os.environ.get('PERSONAL_DATA_DB_USERNAME'),
+                    password=os.environ.get('PERSONAL_DATA_DB_PASSWORD', ''))
