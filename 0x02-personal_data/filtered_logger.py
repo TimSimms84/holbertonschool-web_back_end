@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from re import sub
+import re
 import logging
 """
 0x02 personal data
@@ -38,6 +38,6 @@ def filter_datum(fields, redaction, message, separator):
     re.sub to perform the substitution with a single regex.
     """
     for elem in fields:
-        message = sub(f'{elem}=.+?{separator}',
+        message = re.sub(f'{elem}=.+?{separator}',
                       f'{elem}={redaction}{separator}', message)
     return message
