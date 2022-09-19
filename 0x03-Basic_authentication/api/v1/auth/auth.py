@@ -18,7 +18,7 @@ class Auth():
         path=/api/v1/status/ must be returned False if excluded_paths
         contains /api/v1/status/
         """
-        if not path:
+        if not path or not excluded_paths:
             return True
         if path[-1] != '/':
             path += '/'
