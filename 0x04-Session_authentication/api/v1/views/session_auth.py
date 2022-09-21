@@ -32,6 +32,15 @@ def auth_login() -> str:
 @app_views.route('/auth_session/logout', methods=['DELETE'],
                  strict_slashes=False)
 def logout() -> str:
+    """
+    If the request is equal to None, return False
+    If the request doesn’t contain the Session ID cookie, return
+    False - you must use self.session_cookie(request)
+    If the Session ID of the request is not linked to
+    any User ID, return False - you must use self.user_id_for_session_id(...)
+    Otherwise, delete in self.user_id_by_session_id the Session ID
+    (as key of this dictionary) and return True
+    """
     from api.v1.app import auth
     destroy_session = auth.destroy_session(request)
     if destroy_session is False:
