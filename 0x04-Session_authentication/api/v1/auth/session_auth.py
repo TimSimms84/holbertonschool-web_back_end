@@ -51,3 +51,16 @@ the user_id is the value in the dictionary user_id_by_session_id
             return None
         user = self.user_id_for_session_id(cookie_value)
         return User.get(user)
+
+    def destroy_session(self, request=None):
+        """ deletes the user session / logout """
+        if request is None:
+            return False
+        session_id = self.session_cookie(request)
+        if not session_id:
+            return False
+        user_id = self.user_id_for_session_id(session_id)
+        if not user_id:
+            return False
+        del self.user_id_by_session_id[session_id]
+        return True
