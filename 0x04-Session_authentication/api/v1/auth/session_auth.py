@@ -44,16 +44,16 @@ the user_id is the value in the dictionary user_id_by_session_id
             return None
         return self.user_id_by_session_id.get(session_id)
 
-    def current_user(self, request=None):
-        """
-        You must use self.session_cookie(...) and
-        self.user_id_for_session_id(...) to return the User ID based on the
-        cookie _my_session_id
-        By using this User ID, you will be able to retrieve a User instance
-        from the database - you can use User.get(...) for retrieving a
-        User from the database.
-        """
-        session_cookie = self.session_cookie(request)
-        if session_cookie:
-            user = self.user_id_for_session_id(session_cookie)
-            return User.get()
+    # def current_user(self, request=None):
+    #     """
+    #     You must use self.session_cookie(...) and
+    #     self.user_id_for_session_id(...) to return the User ID based on the
+    #     cookie _my_session_id
+    #     By using this User ID, you will be able to retrieve a User instance
+    #     from the database - you can use User.get(...) for retrieving a
+    #     User from the database.
+    #     """
+    #     session_cookie = self.session_cookie(request)
+    #     if session_cookie:
+    #         user = self.user_id_for_session_id(session_cookie)
+    #         return User.get(_id)

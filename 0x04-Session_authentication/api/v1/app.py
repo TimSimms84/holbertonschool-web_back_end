@@ -46,7 +46,7 @@ def not_found(error) -> str:
 
 @app.before_request
 def before_request() -> str:
-    """ before request handler """
+    """ method to handler before request """
     if auth is None:
         return
     excluded_paths = ['/api/v1/status/',
@@ -55,8 +55,8 @@ def before_request() -> str:
                       '/api/v1/auth_session/login/']
     if not auth.require_auth(request.path, excluded_paths):
         return
-    if auth.authorization_header(request) is None and not\
-            auth.session_cookie(request):
+    if not auth.authorization_header(request)\
+       and not auth.session_cookie(request):
         abort(401)
     if auth.current_user(request) is None:
         abort(403)
