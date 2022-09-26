@@ -21,7 +21,7 @@ def index():
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
 def users():
-
+    """ POST /users: register a new user """
     email = request.form.get('email')
     password = request.form.get('password')
     try:
@@ -74,6 +74,7 @@ def get_reset_password_token():
     except ValueError:
         abort(403)
     return jsonify({"email": email, "reset_token": token}), 200
+
 
 @app.route('/reset_password', methods=['PUT'], strict_slashes=False)
 def update_password():
