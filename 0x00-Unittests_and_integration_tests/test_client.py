@@ -6,7 +6,7 @@
 from client import GithubOrgClient
 
 from parameterized import parameterized, parameterized_class
-from unittest.mock import patch, PropertyMock
+from unittest.mock import patch, PropertyMock, MagicMock
 import unittest
 from typing import Dict
 from fixtures import TEST_PAYLOAD
@@ -17,17 +17,17 @@ class TestGithubOrgClient(unittest.TestCase):
     test github org client
     """
     @parameterized.expand([
-        ("google", {"payload": True}),
-        ("abc", {"payload": False}),
+        ("google"),
+        ("abc")
     ])
-    @patch("client.get_json")
-    def test_org(self, org: str, return_val: Dict, patched_json) -> None:
-        """test the org method if it returns the correct value"""
-        patched_json.return_value = return_val
-        url = GithubOrgClient(org)
-        test = url.org
-        self.assertEqual(test, patched_json.return_value)
-        patched_json.assert_called_once()
+    # MagicMock creates attributes and methods
+    # org returns jsonized dict - so specify return_value dict
+    @patch("client.get_json",
+           MagicMock(return_value={'key': 'value'}))
+    def test_org(self, org_name):
+        """ Test for GithubOrgClient.org method """
+        cls = GithubOrgClient(org_name)
+        self.assertEqual(cls.org, {'key': 'value'})
 
     def test_public_repos_url(self):
         """
