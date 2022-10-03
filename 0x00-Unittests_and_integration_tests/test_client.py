@@ -8,6 +8,7 @@ from client import GithubOrgClient
 from parameterized import parameterized, parameterized_class
 from unittest.mock import patch, PropertyMock
 import unittest
+from typing import Dict
 from fixtures import TEST_PAYLOAD
 
 
@@ -16,16 +17,17 @@ class TestGithubOrgClient(unittest.TestCase):
     test github org client
     """
     @parameterized.expand([
-        ('google'),
-        ('abc')
+        ("google", {"payload": True}),
+        ("abc", {"payload": False}),
     ])
-    @patch('client.get_json')
-    def test_org(self, input, mock):
-        """test that GithubOrgClient.org
-        returns the correct value."""
-        test_class = GithubOrgClient(input)
-        test_class.org()
-        mock.assert_called_once_with(f'https://api.github.com/orgs/{input}')
+    @patch("client.get_json")
+    def test_org(self, org: str, return_val: Dict, patched_json) -> None:
+        """test the org method if it returns the correct value"""
+        patched_json.return_value = return_val
+        url = GithubOrgClient(org)
+        test = url.org
+        self.assertEqual(test, patched_json.return_value)
+        patched_json.assert_called_once()
 
     # def test_public_repos_url(self):
     #     """
