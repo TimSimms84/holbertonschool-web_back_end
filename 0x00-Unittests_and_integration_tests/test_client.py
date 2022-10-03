@@ -20,8 +20,6 @@ class TestGithubOrgClient(unittest.TestCase):
         ("google"),
         ("abc")
     ])
-    # MagicMock creates attributes and methods
-    # org returns jsonized dict - so specify return_value dict
     @patch("client.get_json",
            MagicMock(return_value={'key': 'value'}))
     def test_org(self, org_name):
