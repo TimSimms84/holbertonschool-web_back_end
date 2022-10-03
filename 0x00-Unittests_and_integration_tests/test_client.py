@@ -62,8 +62,8 @@ class TestGithubOrgClient(unittest.TestCase):
         """
         test has license
         """
-        test = GithubOrgClient('google')
-        self.assertEqual(test.has_license(repo, license_key), expected)
+        self.assertEqual(GithubOrgClient.has_license(repo, license_key),
+                         expected)
 
 
 @parameterized_class(
