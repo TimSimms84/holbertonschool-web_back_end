@@ -3,7 +3,6 @@
 4. Parameterize and patch as decorators
 
 """
-from webbrowser import get
 from client import GithubOrgClient
 
 from parameterized import parameterized, parameterized_class
