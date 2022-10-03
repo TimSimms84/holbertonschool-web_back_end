@@ -29,16 +29,16 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(test, patched_json.return_value)
         patched_json.assert_called_once()
 
-    # def test_public_repos_url(self):
-    #     """
-    #     test public repos url
-    #     """
-    #     test = GithubOrgClient('google')
-    #     with patch.object(GithubOrgClient, 'org',
-    #                       new_callable=PropertyMock) as mock:
-    #         mock.return_value = {'repos_url': 'google'}
-    #         self.assertEqual(test._public_repos_url, 'google')
-    #         mock.assert_called_once()
+    def test_public_repos_url(self):
+        """
+        test public repos url
+        """
+        test = GithubOrgClient('google')
+        with patch.object(GithubOrgClient, 'org',
+                          new_callable=PropertyMock) as mock:
+            mock.return_value = {'repos_url': 'google'}
+            self.assertEqual(test._public_repos_url, 'google')
+            mock.assert_called_once()
 
     # @patch('client.get_json')
     # def test_public_repos(self, mock_get):
