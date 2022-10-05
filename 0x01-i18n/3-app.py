@@ -7,7 +7,7 @@ from flask_babel import _, Babel
 
 app = Flask(__name__)
 babel = Babel(app)
-_.__doc__ = "Is this how you want me to document it?"
+_.__doc__ = "gettext documentation"
 
 
 class Config(object):
@@ -18,8 +18,8 @@ class Config(object):
 
 
 app.config.from_object(Config)
-_(u'home_title')
-_(u'home_header')
+_('home_title')
+_('home_header')
 
 
 @babel.localeselector
