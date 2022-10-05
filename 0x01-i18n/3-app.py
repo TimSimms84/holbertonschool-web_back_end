@@ -7,6 +7,7 @@ from flask_babel import _, Babel
 
 app = Flask(__name__)
 babel = Babel(app)
+_.__doc__ = "Is this how you want me to document it?"
 
 
 class Config(object):
