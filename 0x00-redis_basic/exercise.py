@@ -87,9 +87,9 @@ def replay(method: Callable) -> None:
     method, then the history of inputs and outputs for that method.
     """
     r = redis.Redis()
-    method_name = method.__qualname__
-    inputs = r.lrange(method_name + ":inputs", 0, -1)
-    outputs = r.lrange(method_name + ":outputs", 0, -1)
-    print("{} was called {} times:".format(method_name, len(inputs)))
+    qual_Name = method.__qualname__
+    inputs = r.lrange(f"{qual_Name}:inputs", 0, -1)
+    outputs = r.lrange(f"{qual_Name}:outputs", 0, -1)
+    print("{} was called {} times:".format(qual_Name, len(inputs)))
     for i, o in zip(inputs, outputs):
-        print("{}(*{}) -> {}".format(method_name, i, o))
+        print(f"{qual_Name}(*{(i).decode('utf-8')}) -> {(o).decode('utf-8')}")
