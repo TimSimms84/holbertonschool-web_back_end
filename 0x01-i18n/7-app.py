@@ -65,14 +65,20 @@ def index():
 def get_timezone():
     """Timezone selector to determine timezone"""
     localTimezone = request.args.get('timezone')
-    if localTimezone in all_timezones:
-        timezone(localTimezone)
-        return localTimezone
-    if g.user:
-        localTimezone = g.user.get('timezone')
-        if localTimezone in all_timezones:
+    if localTimezone in all:
+        try:
             timezone(localTimezone)
             return localTimezone
+        except UnknownTimeZoneError:
+            pass
+    if g.user:
+        localTimezone = g.user.get('timezone')
+        if localTimezone:
+            try:
+                timezone(localTimezone)
+                return localTimezone
+            except UnknownTimeZoneError:
+                pass
     return app.config['BABEL_DEFAULT_TIMEZONE']
 
 
