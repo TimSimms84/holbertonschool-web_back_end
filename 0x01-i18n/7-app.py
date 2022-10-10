@@ -65,7 +65,7 @@ def index():
 def get_timezone():
     """Timezone selector to determine timezone"""
     localTimezone = request.args.get('timezone')
-    if localTimezone in all:
+    if localTimezone:
         try:
             timezone(localTimezone)
             return localTimezone
