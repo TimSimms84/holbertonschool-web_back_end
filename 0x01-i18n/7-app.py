@@ -4,7 +4,7 @@
 
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
-from pytz import timezone, UnknownTimeZoneError
+from pytz import timezone, UnknownTimeZoneError, all_timezones
 
 
 app = Flask(__name__)
@@ -65,21 +65,15 @@ def index():
 def get_timezone():
     """Timezone selector to determine timezone"""
     localTimezone = request.args.get('timezone')
-    if localTimezone:
-        try:
-            timezone(localTimezone)
-            return localTimezone
-        except UnknownTimeZoneError:
-            localTimezone = app.config['BABEL_DEFAULT_TIMEZONE']
+    if localTimezone in all_timezones:
+        timezone(localTimezone)
+        return localTimezone
     if g.user:
         localTimezone = g.user.get('timezone')
-        if localTimezone:
-            try:
-                timezone(localTimezone)
-                return localTimezone
-            except UnknownTimeZoneError:
-                localTimezone = app.config['BABEL_DEFAULT_TIMEZONE']
-    return localTimezone
+        if localTimezone in all_timezones:
+            timezone(localTimezone)
+            return localTimezone
+    return app.config['BABEL_DEFAULT_TIMEZONE']
 
 
 if __name__ == '__main__':
