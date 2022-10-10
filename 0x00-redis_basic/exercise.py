@@ -79,3 +79,17 @@ class Cache:
         """ automatically parametrize Cache.get to int """
         data = self._redis.get(key)
         return int(data)
+
+
+def replay(method: Callable) -> None:
+    """
+    Method takes a single method argument and displays the name of the
+    method, then the history of inputs and outputs for that method.
+    """
+    r = redis.Redis()
+    method_name = method.__qualname__
+    inputs = r.lrange(method_name + ":inputs", 0, -1)
+    outputs = r.lrange(method_name + ":outputs", 0, -1)
+    print("{} was called {} times:".format(method_name, len(inputs)))
+    for i, o in zip(inputs, outputs):
+        print("{}(*{}) -> {}".format(method_name, i, o))
