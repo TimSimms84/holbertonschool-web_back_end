@@ -70,16 +70,16 @@ def get_timezone():
             timezone(localTimezone)
             return localTimezone
         except UnknownTimeZoneError:
-            pass
+            localTimezone = app.config['BABEL_DEFAULT_TIMEZONE']
     if g.user:
-        userTime = g.user.get('timezone')
-        if userTime:
+        localTimezone = g.user.get('timezone')
+        if localTimezone:
             try:
-                timezone(userTime)
-                return userTime
+                timezone(localTimezone)
+                return localTimezone
             except UnknownTimeZoneError:
-                pass
-    return app.config['BABEL_DEFAULT_TIMEZONE']
+                localTimezone = app.config['BABEL_DEFAULT_TIMEZONE']
+    return localTimezone
 
 
 if __name__ == '__main__':
