@@ -4,7 +4,7 @@
 
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
-from pytz import timezone, UnknownTimeZoneError, all_timezones
+from pytz import timezone, UnknownTimeZoneError
 
 
 app = Flask(__name__)
