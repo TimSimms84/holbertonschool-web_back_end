@@ -1,2 +1,6 @@
-// update where match is Holberton School
-db.school.update({name: "Holberton school"}, {$set: {address: "972 Mission Street"}}, {multi: true})
+// adds new attribute to a document in school
+db.school.update(
+	{name: "Holberton school"},
+	{ $set: {address: "972 Mission street"} },
+	{multi: true}
+)
