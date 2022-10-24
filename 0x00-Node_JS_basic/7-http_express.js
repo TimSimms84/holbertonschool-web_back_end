@@ -14,14 +14,15 @@ app.get('/', (req, res) => res.send('Hello Holberton School!'));
 
 app.get('/students', async (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
+  const output = 'This is the list of our students\n';
   try {
     const students = await countStudents(process.argv[2]);
     res.end(`This is the list of our students\n${students.join('\n')}`);
   } catch (error) {
-    res.end(error.message);
+    res.end(output + error.message);
   }
 });
 
-app.listen(port, () => console.log(`${process.argv[1]} listening on port ${port}!`));
+app.listen(port);
 
 module.exports = app;
