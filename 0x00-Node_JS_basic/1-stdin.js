@@ -3,7 +3,7 @@
 // program should display Your name is: INPUT
 // when the user ends the program it should display This important software is now closing
 
-console.log('Welcome to Holberton school, what is your name?');
+console.log('Welcome to Holberton School, what is your name?');
 
 process.stdin.on('readable', () => {
   const name = process.stdin.read();
