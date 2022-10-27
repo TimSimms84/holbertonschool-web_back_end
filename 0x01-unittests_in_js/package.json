@@ -4,7 +4,7 @@
   "description": "0x01. Unittests in JS  By: Johann Kerbrat, Engineering Manager at Uber Works  Weight: 1  Project will start Oct 25, 2022 12:00 AM, must end by Oct 28, 2022 12:00 AM  will be released at Oct 26, 2022 12:00 PM  An auto review will be launched at the deadline",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/mocha/bin/mocha --require babel-register --exit"
   },
   "author": "Tim Simms",
   "license": "ISC",
