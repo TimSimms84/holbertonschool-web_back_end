@@ -5,7 +5,7 @@ const calculateNumber = require('./0-calcul');
 
 describe('calculateNumber', () => {
   // eslint-disable-next-line jest/prefer-expect-assertions
-  it('postive intergers', () => {
+  it('postive intergers', function () {
     assert.strictEqual(calculateNumber(1, 3), 4);
     assert.strictEqual(calculateNumber(1, 3.7), 5);
     assert.strictEqual(calculateNumber(1.2, 3.7), 5);
