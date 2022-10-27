@@ -1,10 +1,8 @@
 // eslint-disable-next-line consistent-return
-function getPaymentTokenFromApi(success) {
+function getPaymentTokenFromAPI(success) {
   if (success) {
-    return new Promise((resolve) => {
-      resolve({ data: 'Successful response from the API' });
-    });
+    return Promise.resolve({ data: 'Successful response from the API' });
   }
 }
 
-module.exports = getPaymentTokenFromApi;
+module.exports = getPaymentTokenFromAPI;
