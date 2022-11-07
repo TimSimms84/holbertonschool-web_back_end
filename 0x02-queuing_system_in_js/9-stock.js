@@ -13,7 +13,7 @@ const listProducts = [
   }
 ]
 
-const express = require('express');
+import express from 'express';
 const app = express();
 app.listen(1245);
 
@@ -26,9 +26,9 @@ app.get('/list_products', (req, res) => {
   res.send(listProducts);
 })
 
-const redis = require('redis');
+import redis from 'redis';
 const client = redis.createClient();
-const { promisify } = require('util');
+import { promisify } from 'util';
 
 const promisifiedSet = promisify(client.set).bind(client);
 const asyncGet = promisify(client.get).bind(client);

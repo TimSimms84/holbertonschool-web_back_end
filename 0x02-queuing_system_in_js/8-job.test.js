@@ -1,6 +1,9 @@
 import createPushNotificationsJobs from './8-job.js';
-const queue = require('kue').createQueue();
-const expect = require('chai').expect;
+import { createQueue } from 'kue';
+import { expect } from 'chai';
+
+const queue = createQueue();
+
 
 describe('createPushNotificationsJobs', () => {
   before(() => queue.testMode.enter());
